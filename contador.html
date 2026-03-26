@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MANN+HUMMEL — Cuenta regresiva Gallup</title>
+    <style>
+        body {
+            background: #0A3D2E; /* Verde corporativo oscuro */
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #logo {
+            height: 80px;
+        }
+
+        main {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+
+        #contador {
+            font-size: 5rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+
+        footer {
+            width: 85%;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.6rem;
+            line-height: 1.3;
+            margin-bottom: 50px;
+
+            /* Fondo sutil para destacar */
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+
+            /* Animación */
+            animation: fadeIn 2s ease, pulse 6s infinite ease-in-out;
+        }
+
+        /* Animación de entrada suave */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Pulso suave elegante */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.45); }
+            100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.3); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img id="logo" src="logo.png" alt="Logo MANN+HUMMEL">
+    </header>
+
+    <main>
+        <h1>MANN+HUMMEL</h1>
+        <h2>Cuenta regresiva para las Encuestas de Gallup</h2>
+
+        <div id="contador"></div>
+    </main>
+
+    <footer>
+        Le invitamos a consultar la información proporcionada por la empresa
+        respecto a los programas y beneficios disponibles, con el fin de
+        mantenerlos presentes y aprovecharlos plenamente.
+    </footer>
+
+    <script>
+        // Fecha del evento: 17 abril 2026, 9:00 AM
+        const evento = new Date("2026-04-17T09:00:00");
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = evento - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById("contador").innerHTML = "¡Hoy comienza!";
+                return;
+            }
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+            const segundos = Math.floor((diferencia / 1000) % 60);
+
+            document.getElementById("contador").innerHTML =
+                `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        }
+
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+    </script>
+
+</body>
+</html>
